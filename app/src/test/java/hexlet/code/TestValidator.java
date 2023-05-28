@@ -28,7 +28,9 @@ class TestValidator {
         assertThat(schema.isValid("what does the fox say")).isTrue();
         assertThat(schema.isValid("hexlet")).isTrue();
 
-        assertThat(schema.contains("wh").isValid("what does the fox say")).isTrue();
+        schema.minLength(21);
+
+        assertThat(schema.contains("wh").isValid("what does the fox")).isFalse();
         assertThat(schema.contains("what").isValid("what does the fox say")).isTrue();
         assertThat(schema.contains("whatthe").isValid("what does the fox say")).isFalse();
 
