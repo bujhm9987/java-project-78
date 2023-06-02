@@ -8,10 +8,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class StringSchemaTest {
 
     private final Validator v = new Validator();
-    private final StringSchema schema = v.string();
 
     @Test
     public void testRequired() {
+        StringSchema schema = v.string();
         assertThat(schema.isValid("")).isTrue();
         assertThat(schema.isValid(null)).isTrue();
         assertThat(schema.isValid(5)).isFalse();
@@ -26,15 +26,17 @@ public class StringSchemaTest {
 
     @Test
     public void testMinLength() {
+        StringSchema schema = v.string();
         assertThat(schema.isValid("hexlet")).isTrue();
         schema.minLength(7);
         assertThat(schema.isValid("hexlet")).isFalse();
         assertThat(schema.isValid("hexlet the best")).isTrue();
-        assertThat(schema.isValid(null)).isFalse();
+        assertThat(schema.isValid(null)).isTrue();
     }
 
     @Test
     public void testContains() {
+        StringSchema schema = v.string();
         assertThat(schema.contains("wh").isValid(null)).isFalse();
         assertThat(schema.contains("what").isValid("what does the fox say")).isTrue();
         assertThat(schema.contains("whatthe").isValid("what does the fox say")).isFalse();

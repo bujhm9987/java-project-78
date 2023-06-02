@@ -8,10 +8,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class NumberSchemaTest {
 
     private final Validator v = new Validator();
-    private final NumberSchema schema = v.number();
 
     @Test
     public void testRequired() {
+        NumberSchema schema = v.number();
         assertThat(schema.isValid(null)).isTrue();
         schema.required();
         assertThat(schema.isValid(null)).isFalse();
@@ -21,9 +21,11 @@ public class NumberSchemaTest {
 
     @Test
     public void testPositive() {
+        NumberSchema schema = v.number();
         assertThat(schema.isValid(-10)).isTrue();
         assertThat(schema.isValid(0)).isTrue();
         schema.positive();
+        assertThat(schema.isValid(null)).isTrue();
         assertThat(schema.isValid("5")).isFalse();
         assertThat(schema.isValid(-10)).isFalse();
         assertThat(schema.isValid(0)).isFalse();
@@ -32,6 +34,7 @@ public class NumberSchemaTest {
 
     @Test
     public void testRange() {
+        NumberSchema schema = v.number();
         assertThat(schema.isValid(4)).isTrue();
         assertThat(schema.isValid(11)).isTrue();
         schema.range(5, 10);

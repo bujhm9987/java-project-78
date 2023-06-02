@@ -3,16 +3,17 @@ package hexlet.code.schemas;
 public final class StringSchema extends BaseSchema {
 
     public StringSchema() {
-        super(String.class);
+        addCheck("checkClass", value -> value == null || value instanceof String);
     }
 
+    @Override
     public StringSchema required() {
         addCheck("required", value -> value != null && !value.toString().isEmpty());
         return this;
     }
 
     public StringSchema minLength(int length) {
-        addCheck("minLength", value -> value != null && value.toString().length() >= length);
+        addCheck("minLength", value -> value == null || value.toString().length() >= length);
         return this;
     }
 
