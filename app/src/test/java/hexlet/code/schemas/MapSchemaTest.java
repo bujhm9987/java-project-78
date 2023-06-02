@@ -3,6 +3,7 @@ package hexlet.code.schemas;
 import hexlet.code.Validator;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ public class MapSchemaTest {
     public void testRequired() {
         MapSchema schema = v.map();
         assertThat(schema.isValid(null)).isTrue();
+        assertThat(schema.isValid(new ArrayList<>())).isFalse();
         schema.required();
         assertThat(schema.isValid(null)).isFalse();
         assertThat(schema.isValid(new HashMap<>())).isTrue();
