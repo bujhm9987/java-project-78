@@ -37,7 +37,7 @@ public class StringSchemaTest {
     @Test
     public void testContains() {
         StringSchema schema = v.string();
-        assertThat(schema.contains("wh").isValid(null)).isFalse();
+        assertThat(schema.contains("wh").isValid(null)).isTrue();
         assertThat(schema.contains("what").isValid("what does the fox say")).isTrue();
         assertThat(schema.contains("whatthe").isValid("what does the fox say")).isFalse();
         assertThat(schema.isValid("what does the fox say")).isFalse();

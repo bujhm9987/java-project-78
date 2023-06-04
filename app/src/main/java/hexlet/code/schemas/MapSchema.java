@@ -9,7 +9,7 @@ public final class MapSchema extends BaseSchema {
     }
 
     public MapSchema sizeof(Integer size) {
-        addCheck("sizeof", value -> value != null && ((Map<?, ?>) value).size() == size);
+        addCheck("sizeof", value -> value == null || ((Map<?, ?>) value).size() == size);
         return this;
     }
 

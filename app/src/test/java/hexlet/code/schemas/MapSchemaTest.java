@@ -30,7 +30,7 @@ public class MapSchemaTest {
         assertThat(schema.isValid(data)).isTrue();
 
         schema.sizeof(2);
-        assertThat(schema.isValid(null)).isFalse();
+        assertThat(schema.isValid(null)).isTrue();
         assertThat(schema.isValid(data)).isFalse();
         data.put("key2", "value2");
         assertThat(schema.isValid(data)).isTrue();
